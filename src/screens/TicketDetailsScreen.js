@@ -65,11 +65,17 @@ const TicketDetailsScreen = () => {
   }, [newStatus, additionalDetails]);
 
   const handleSend = () => {
-    const updatedTicket = { ...selectedTicket, status: newStatus, additionalDetails };
+    const updatedTicket = {
+      ...selectedTicket,
+      status: newStatus,
+      additionalDetails,
+    };
     updateTicket(updatedTicket);
 
     // Simulate sending an email by logging the email content
-    const emailContent = `Would normally send email here with body: ${JSON.stringify(updatedTicket)}`;
+    const emailContent = `Would normally send email here with body: ${JSON.stringify(
+      updatedTicket
+    )}`;
     console.log(emailContent);
   };
 
@@ -99,6 +105,7 @@ const TicketDetailsScreen = () => {
           <Text style={styles.detailLabel}>Description:</Text>
           <Text style={styles.detailText}>{selectedTicket?.description}</Text>
         </View>
+
         {["In Progress", "Resolved"].includes(newStatus) && (
           <View>
             <Text style={styles.detailLabel}>Response:</Text>
@@ -159,17 +166,17 @@ const styles = StyleSheet.create({
   detailLabel: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333", 
+    color: "#333",
     marginRight: 8,
   },
   detailText: {
     fontSize: 16,
-    color: "#333", 
+    color: "#333",
     flex: 1,
   },
   statusText: {
     fontSize: 16,
-    color: "#007bff", 
+    color: "#007bff",
   },
   textInput: {
     height: 80,
@@ -196,15 +203,15 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ccc",
   },
   sendButton: {
-    backgroundColor: '#00531b',
+    backgroundColor: "#00531b",
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
   },
   sendButtonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
+    color: "#fff",
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
 

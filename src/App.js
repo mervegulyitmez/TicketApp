@@ -6,7 +6,6 @@ import TicketListScreen from "./screens/TicketListScreen";
 import SubmitTicketScreen from "./screens/SubmitTicketScreen";
 import TicketDetailsScreen from "./screens/TicketDetailsScreen";
 import { TicketProvider } from "./context/TicketContext";
-
 const Stack = createStackNavigator();
 
 const App = () => {
