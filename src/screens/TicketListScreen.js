@@ -11,23 +11,31 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTicketContext } from "./../context/TicketContext";
-import filterIcon from "./../icon/filter.png"; // Change the path as needed
+import filterIcon from "./../icon/filter.png";
 
 const TicketListScreen = () => {
+  // Use the ticket context to access tickets
   const { tickets } = useTicketContext();
+
+  // State for filter status and modal visibility
   const [filterStatus, setFilterStatus] = useState("All");
   const [isModalVisible, setModalVisible] = useState(false);
-  const navigation = useNavigation(); // Hook for navigation
 
+  // Hook for navigation
+  const navigation = useNavigation();
+
+  // Function to toggle the filter status modal visibility
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
+  // Function to handle a change in filter status
   const handleStatusChange = (selectedItem) => {
     setFilterStatus(selectedItem);
     toggleModal();
   };
 
+  // Function to determine the style based on ticket status
   const getStatusStyle = (status) => {
     switch (status.toLowerCase()) {
       case "new":
@@ -41,6 +49,7 @@ const TicketListScreen = () => {
     }
   };
 
+  // Filter tickets based on the selected status
   const filteredTickets =
     filterStatus === "All"
       ? tickets
@@ -48,6 +57,7 @@ const TicketListScreen = () => {
           (ticket) => ticket.status.toLowerCase() === filterStatus.toLowerCase()
         );
 
+  // Function to handle pressing on a ticket item
   const handleTicketPress = (ticketId) => {
     navigation.navigate("TicketDetailsScreen", { ticketId });
   };
@@ -58,25 +68,25 @@ const TicketListScreen = () => {
       <Text style={styles.modalTitle}>Filter by Status</Text>
       <TouchableOpacity
         style={styles.statusItem}
-        onPress={() => handleStatusChange('All')}
+        onPress={() => handleStatusChange("All")}
       >
         <Text style={styles.allStatus}>All</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.statusItem}
-        onPress={() => handleStatusChange('New')}
+        onPress={() => handleStatusChange("New")}
       >
         <Text style={styles.defaultStatus}>New</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.statusItem}
-        onPress={() => handleStatusChange('In Progress')}
+        onPress={() => handleStatusChange("In Progress")}
       >
         <Text style={styles.defaultStatus}>In Progress</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.statusItem}
-        onPress={() => handleStatusChange('Resolved')}
+        onPress={() => handleStatusChange("Resolved")}
       >
         <Text style={styles.defaultStatus}>Resolved</Text>
       </TouchableOpacity>
@@ -85,7 +95,10 @@ const TicketListScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* Title */}
       <Text style={styles.title}>Ticket List</Text>
+
+      {/* Filter button */}
       <TouchableOpacity style={styles.filterButton} onPress={toggleModal}>
         <Text>Filter by Status</Text>
         <Image
@@ -95,6 +108,7 @@ const TicketListScreen = () => {
         />
       </TouchableOpacity>
 
+      {/* Modal */}
       <Modal
         visible={isModalVisible}
         transparent={true}
@@ -102,12 +116,11 @@ const TicketListScreen = () => {
         onRequestClose={toggleModal}
       >
         <TouchableWithoutFeedback onPress={toggleModal}>
-          <View style={styles.modalContainer}>
-            {modalContent}
-          </View>
+          <View style={styles.modalContainer}>{modalContent}</View>
         </TouchableWithoutFeedback>
       </Modal>
 
+      {/* Display tickets */}
       {filteredTickets.length === 0 ? (
         <Text>No tickets available.</Text>
       ) : (
@@ -122,7 +135,9 @@ const TicketListScreen = () => {
                 <Text>Email: {item.email}</Text>
                 <Text>
                   Status:{" "}
-                  <Text style={[styles.status, getStatusStyle(item.status)]}>
+                  <Text
+                    style={[styles.status, getStatusStyle(item.status)]}
+                  >
                     {item.status}
                   </Text>
                 </Text>
@@ -136,6 +151,7 @@ const TicketListScreen = () => {
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -180,7 +196,7 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   allStatus: {
-    fontWeight:'400',
+    fontWeight: "400",
     color: "#333",
   },
   // Modal styles

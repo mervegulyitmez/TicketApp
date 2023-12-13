@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,9 +8,9 @@ import {
   Modal,
   Button,
   TouchableWithoutFeedback,
-} from 'react-native';
-import { useRoute } from '@react-navigation/native';
-import { useTicketContext } from '../context/TicketContext';
+} from "react-native";
+import { useRoute } from "@react-navigation/native";
+import { useTicketContext } from "../context/TicketContext";
 const TicketDetailsScreen = () => {
   const route = useRoute();
   const { ticketId } = route.params;
@@ -18,10 +18,12 @@ const TicketDetailsScreen = () => {
   const { tickets, updateTicket } = useTicketContext();
   const selectedTicket = tickets.find((ticket) => ticket.id === ticketId);
 
-  const statusOptions = ['New', 'In Progress', 'Resolved'];
+  const statusOptions = ["New", "In Progress", "Resolved"];
 
-  const [newStatus, setNewStatus] = useState(selectedTicket?.status || 'New');
-  const [additionalDetails, setAdditionalDetails] = useState(selectedTicket?.additionalDetails || '');
+  const [newStatus, setNewStatus] = useState(selectedTicket?.status || "New");
+  const [additionalDetails, setAdditionalDetails] = useState(
+    selectedTicket?.additionalDetails || ""
+  );
   const [isModalVisible, setModalVisible] = useState(false);
 
   // Function to toggle the status filter modal visibility
@@ -30,34 +32,46 @@ const TicketDetailsScreen = () => {
   };
 
   // Function to handle updating the status and additional details
-  const handleUpdateStatus = () => {
-    const updatedTicket = { ...selectedTicket, status: newStatus, additionalDetails };
-    updateTicket(updatedTicket);
-
-    // Simulate sending an email by logging the email content
-    const emailContent = `Would normally send email here with body: ${JSON.stringify(updatedTicket)}`;
-    console.log(emailContent);
-  };
-
-  const handleSave = () => {
-    const updatedTicket = { ...selectedTicket, status: newStatus, additionalDetails };
-    updateTicket(updatedTicket);
-
-    // Simulate sending an email by logging the email content
-    const emailContent = `Would normally send email here with body: ${JSON.stringify(updatedTicket)}`;
-    console.log(emailContent);
-  };
 
   const handleSelectStatus = (status) => {
     setNewStatus(status);
     handleUpdateStatus(); // Update the status immediately
   };
 
+  // Function to handle updating the status and additional details
+  const handleUpdateStatus = () => {
+    const updatedTicket = {
+      ...selectedTicket,
+      status: newStatus,
+      additionalDetails,
+    };
+    updateTicket(updatedTicket);
+
+    // Simulate sending an email by logging the email content
+    const emailContent = `Would normally send email here with body: ${JSON.stringify(
+      updatedTicket
+    )}`;
+    console.log(emailContent);
+  };
 
   // Use effect to handle automatic status update on changes
   useEffect(() => {
     handleUpdateStatus();
-  }, [newStatus, additionalDetails, handleUpdateStatus]);
+  }, [newStatus, additionalDetails]);
+
+  // Use effect to handle automatic status update on changes
+  useEffect(() => {
+    handleUpdateStatus();
+  }, [newStatus, additionalDetails]);
+
+  const handleSend = () => {
+    const updatedTicket = { ...selectedTicket, status: newStatus, additionalDetails };
+    updateTicket(updatedTicket);
+
+    // Simulate sending an email by logging the email content
+    const emailContent = `Would normally send email here with body: ${JSON.stringify(updatedTicket)}`;
+    console.log(emailContent);
+  };
 
   return (
     <View style={styles.container}>
@@ -85,7 +99,7 @@ const TicketDetailsScreen = () => {
           <Text style={styles.detailLabel}>Description:</Text>
           <Text style={styles.detailText}>{selectedTicket?.description}</Text>
         </View>
-        {['In Progress', 'Resolved'].includes(newStatus) && (
+        {["In Progress", "Resolved"].includes(newStatus) && (
           <View>
             <Text style={styles.detailLabel}>Response:</Text>
             <TextInput
@@ -94,6 +108,9 @@ const TicketDetailsScreen = () => {
               onChangeText={(text) => setAdditionalDetails(text)}
               multiline
             />
+            <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
+              <Text style={styles.sendButtonText}>Send</Text>
+            </TouchableOpacity>
           </View>
         )}
       </View>
@@ -121,58 +138,69 @@ const TicketDetailsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-        backgroundColor: '#ffffff',
-      },
-      detailsContainer: {
-        marginBottom: 20,
-      },
-      detailRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 8,
-      },
-      detailLabel: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#333', // Adjust color as needed
-        marginRight: 8,
-      },
-      detailText: {
-        fontSize: 16,
-        color: '#333', // Adjust color as needed
-        flex: 1,
-      },
-      statusText: {
-        fontSize: 16,
-        color: '#007bff', // Adjust color as needed
-      },
-      textInput: {
-        height: 80,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        marginBottom: 16,
-        padding: 8,
-        backgroundColor: '#f9f9f9',
-      },
-      modalContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      },
-      modalContent: {
-        backgroundColor: '#fff',
-        padding: 20,
-        borderRadius: 10,
-      },
-      statusItem: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-      },
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#ffffff",
+  },
+  detailsContainer: {
+    marginBottom: 20,
+  },
+  detailRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  detailLabel: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333", 
+    marginRight: 8,
+  },
+  detailText: {
+    fontSize: 16,
+    color: "#333", 
+    flex: 1,
+  },
+  statusText: {
+    fontSize: 16,
+    color: "#007bff", 
+  },
+  textInput: {
+    height: 80,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    marginBottom: 16,
+    padding: 8,
+    backgroundColor: "#f9f9f9",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+  },
+  statusItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  sendButton: {
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  sendButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });
 
 export default TicketDetailsScreen;

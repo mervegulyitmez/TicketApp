@@ -41,17 +41,11 @@ const SubmitTicketScreen = () => {
     }));
   };
 
+ 
   const handleSubmit = async () => {
     // Simple validation
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.description.trim()
-    ) {
-      Alert.alert(
-        "Validation Error",
-        "Name, Email, and Description are required fields."
-      );
+    if (!formData.name.trim() || !formData.email.trim() || !formData.description.trim()) {
+      Alert.alert("Validation Error", "Name, Email, and Description are required fields.");
       return;
     }
 
@@ -89,6 +83,9 @@ const SubmitTicketScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.description}>
+        Please provide details about the problem you are experiencing. We will do our best to assist you.
+      </Text>
       <Text style={styles.label}>Name:</Text>
       <TextInput
         style={styles.input}
@@ -115,17 +112,6 @@ const SubmitTicketScreen = () => {
         multiline
       />
 
-      <View>
-        <Text style={styles.label}>Attachment:</Text>
-        {selectedImage && (
-          <Image
-            source={{ uri: selectedImage.path }}
-            style={{ width: 200, height: 200, marginBottom: 16 }}
-          />
-        )}
-        {/* <Button title="Pick Image" onPress={handleImagePick} /> */}
-      </View>
-
       <Button
         title="Submit Ticket"
         onPress={handleSubmit}
@@ -145,6 +131,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  description: {
+    fontSize: 16,
+    marginBottom: 16,
+    color: "#555", 
   },
   label: {
     fontSize: 16,
