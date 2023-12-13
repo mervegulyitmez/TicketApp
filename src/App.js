@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
 
-function App() {
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import TicketListScreen from './screens/TicketListScreen';
+import SubmitTicketScreen from './screens/SubmitTicketScreen';
+import TicketDetailsScreen from './screens/TicketDetailsScreen';
+import {TicketProvider} from './context/TicketContext';
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TicketProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="TicketList" component={TicketListScreen} />
+          <Stack.Screen name="SubmitTicket" component={SubmitTicketScreen} />
+          <Stack.Screen name="TicketDetailsScreen" component={TicketDetailsScreen} /> 
+        </Stack.Navigator>
+      </NavigationContainer>
+    </TicketProvider>
   );
-}
+};
 
 export default App;
