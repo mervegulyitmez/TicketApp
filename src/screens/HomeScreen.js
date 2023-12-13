@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native-web';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+
+  
+
 
   const goToSubmitTicket = () => {
     navigation.navigate('SubmitTicket');
@@ -19,19 +23,30 @@ const HomeScreen = () => {
       <Text style={styles.description}>Explore the app and submit your support tickets.</Text>
 
       <View style={styles.buttonContainer}>
-        <Button title="Submit Ticket" onPress={goToSubmitTicket} />
-        <Button title="Ticket List" onPress={goToTicketList} />
+        {/* <Button title="Submit Ticket" onPress={goToSubmitTicket} style={styles.button}/> */}
+        <TouchableOpacity onPress={goToSubmitTicket} style={styles.button}>
+          <Text style={styles.sendButtonText}>Submit Ticket</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={goToTicketList} style={styles.button}>
+          <Text style={styles.sendButtonText}>Ticket List</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
+const { height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 16,
+    backgroundColor: "#FEFBEA",
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   title: {
     fontSize: 24,
@@ -48,6 +63,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  button:{
+    backgroundColor: '#00531b',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  sendButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });
+
 
 export default HomeScreen;

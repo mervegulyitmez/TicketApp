@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useTicketContext } from "./../context/TicketContext";
 import alert from './../component/alert';
+import { TouchableOpacity } from "react-native-web";
 
 
 const SubmitTicketScreen = () => {
@@ -99,11 +100,10 @@ const SubmitTicketScreen = () => {
         multiline
       />
 
-      <Button
-        title="Submit Ticket"
-        onPress={handleSubmit}
-        style={styles.button}
-      />
+      
+      <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+        <Text style={styles.buttonText}>Submit Ticket</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -112,7 +112,7 @@ const SubmitTicketScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#FEFBEA",
     borderRadius: 8,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   button: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#00531b",
     borderRadius: 4,
     padding: 10,
     alignItems: "center",
