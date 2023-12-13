@@ -4,8 +4,6 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Image,
-  TouchableOpacity,
   Button
 } from "react-native";
 import { useTicketContext } from "./../context/TicketContext";

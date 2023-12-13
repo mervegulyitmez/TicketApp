@@ -1,70 +1,69 @@
 # Getting Started with Create React App
 
+This project is a basic help desk/support system ticket management system. It allows end users to submit support ticket requests and provides a backend admin panel for support staff to manage tickets.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Submit Tickets:** End users can submit support tickets with necessary details including name, email, photo/attachment, and a description of the problem.
 
-### `npm start`
+- **Admin Panel:** Support staff can view a list summary of each ticket, including its status. They can also drill down into a ticket to respond to a request and update the ticket's status.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Ticket Status:** Tickets can have statuses such as "new," "in progress," and "resolved."
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Web Deployment:** The application is deployed on the web and can be accessed on both Android and iOS platforms.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend:** React Native
+- **Backend:** Mockapi.io -> https://65756352b2fbb8f6509d07ea.mockapi.io/v1/ticket
+- **Deployment:** Vercel 
 
-### `npm run build`
+## Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Access the live demo [here](https://ticket-app-8rh9-2hqd4fa99-mervegulyitmezs-projects.vercel.app).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run the project locally, follow these steps:
 
-### `npm run eject`
+1. Clone the repository:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   git clone https://github.com/mervegulyitmez/TicketApp.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
+    ```bash
+   npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Run the application:
+   ```bash
+   npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This will start the development server, and you can view the app on your emulator or physical device.
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Access the app and explore its features.
+- Submit support tickets from the main page.
+- Use the admin panel to view and manage tickets.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Note
 
-### Code Splitting
+Due to time constraints, the app does not send emails. Instead, it outputs email content to the console.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Folder Structure
 
-### Analyzing the Bundle Size
+- **/screens:** Contains individual screens (components) of the application.
+- **/context:** Manages global state and data using React Context API.
+- **/components:** Contains shared components used across screens.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Future Enhancements
 
-### Making a Progressive Web App
+- Implement authentication for admin access.
+- Add sorting and filtering options for tickets.
+- Enhance UI/UX for a more polished look.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to provide feedback or contribute to the project. Thank you for using the Ticket Management System!
+   
