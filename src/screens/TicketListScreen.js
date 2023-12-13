@@ -151,7 +151,6 @@ const TicketListScreen = () => {
   );
 };
 
-// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -199,7 +198,6 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "#333",
   },
-  // Modal styles
   modalContainer: {
     flex: 1,
     justifyContent: "center",

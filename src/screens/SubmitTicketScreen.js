@@ -3,12 +3,14 @@ import {
   View,
   Text,
   TextInput,
-  Alert,
   StyleSheet,
   Image,
-  Button,
+  TouchableOpacity,
+  Button
 } from "react-native";
 import { useTicketContext } from "./../context/TicketContext";
+import alert from './../component/alert';
+
 
 const SubmitTicketScreen = () => {
   const { updateTicket } = useTicketContext();
@@ -22,17 +24,7 @@ const SubmitTicketScreen = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const [newTicket, setNewTicket] = useState({
-    name: '',
-    email: '',
-    photo: '',
-    description: '',
-    status: 'new',
-  });
-
-
   const [error, setError] = useState(null);
-
 
   const handleInputChange = (fieldName, value) => {
     setFormData((prevData) => ({
@@ -41,11 +33,10 @@ const SubmitTicketScreen = () => {
     }));
   };
 
- 
   const handleSubmit = async () => {
     // Simple validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.description.trim()) {
-      Alert.alert("Validation Error", "Name, Email, and Description are required fields.");
+      alert("Validation Error", "Name, Email, and Description are required fields.");
       return;
     }
 
@@ -69,17 +60,15 @@ const SubmitTicketScreen = () => {
 
       // Provide feedback to the user
       setTimeout(() => {
-        Alert.alert("Success", "Ticket submitted successfully!");
+        alert("Success", "Ticket submitted successfully!");
       }, 200);
     } catch (error) {
       console.error("Error submitting ticket:", error);
       setTimeout(() => {
-        Alert.alert("Error", "Failed to submit ticket. Please try again.");
+        alert("Error", "Failed to submit ticket. Please try again.");
       }, 200);
     }
   };
-
-
 
   return (
     <View style={styles.container}>
@@ -121,6 +110,7 @@ const SubmitTicketScreen = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     padding: 16,
@@ -135,7 +125,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     marginBottom: 16,
-    color: "#555", 
+    color: "#555",
   },
   label: {
     fontSize: 16,
@@ -158,6 +148,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#007bff",
     borderRadius: 4,
     padding: 10,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#ffffff",
+    fontWeight: "bold",
   },
 });
 
